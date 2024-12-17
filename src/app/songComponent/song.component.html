@@ -1,0 +1,46 @@
+<main class="main">
+  <div class="content">
+  <h1>Spotify 2023 Song Data</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Artist Name</th>
+        <th>Occurrence</th>
+        <th>Time Listened</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let artist of artistList">
+        <tr (click)="artist.expanded = !artist.expanded">
+          <td>{{ artist.artistName }}</td>
+          <td>{{ artist.occurrence }}</td>
+          <td>{{ artist.timeListened / 60000 }}</td>
+        </tr>
+        <tr *ngIf="artist.expanded">
+          <td colspan="3">
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Song Name</th>
+                  <th>Occurrence</th>
+                  <th>Time Listened</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let song of artist.songData">
+                  <td>{{ song.songName }}</td>
+                  <td>{{ song.occurrence }}</td>
+                  <td>{{ song.timeListened / 60000 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  
+  </div>
+</main>
+
+
